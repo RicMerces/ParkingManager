@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/route_manager.dart';
 import 'package:parkings/screens/actions.dart';
+import 'package:parkings/screens/occupied.dart';
 
 class Home extends StatelessWidget {
   const Home({Key? key}) : super(key: key);
@@ -219,69 +220,75 @@ class Home extends StatelessWidget {
                     SizedBox(
                       height: 20,
                     ),
-                    Container(
-                      height: 50,
-                      width: MediaQuery.of(context).size.width,
-                      decoration: BoxDecoration(
-                          color: Color(0xFF2A74F7),
-                          borderRadius: BorderRadius.circular(5)),
-                      padding: EdgeInsets.all(10),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Row(
-                            children: [
-                              Icon(Icons.alarm, color: Colors.white),
-                              SizedBox(
-                                width: 10,
-                              ),
-                              Text(
-                                "Vagas de Horista",
-                                style: TextStyle(
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.bold),
-                              ),
-                            ],
-                          ),
-                          Icon(
-                            Icons.arrow_forward_ios_rounded,
-                            color: Colors.white,
-                          ),
-                        ],
+                    GestureDetector(
+                      onTap: () => Get.to(Occupied()),
+                      child: Container(
+                        height: 50,
+                        width: MediaQuery.of(context).size.width,
+                        decoration: BoxDecoration(
+                            color: Color(0xFF2A74F7),
+                            borderRadius: BorderRadius.circular(5)),
+                        padding: EdgeInsets.all(10),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Row(
+                              children: [
+                                Icon(Icons.alarm, color: Colors.white),
+                                SizedBox(
+                                  width: 10,
+                                ),
+                                Text(
+                                  "Vagas de Horista",
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                              ],
+                            ),
+                            Icon(
+                              Icons.arrow_forward_ios_rounded,
+                              color: Colors.white,
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                     SizedBox(
                       height: 20,
                     ),
-                    Container(
-                      height: 50,
-                      width: MediaQuery.of(context).size.width,
-                      decoration: BoxDecoration(
-                          color: Color(0xFF28D5E2),
-                          borderRadius: BorderRadius.circular(5)),
-                      padding: EdgeInsets.all(10),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Row(
-                            children: [
-                              Icon(Icons.calendar_month, color: Colors.black),
-                              SizedBox(
-                                width: 10,
-                              ),
-                              Text(
-                                "Vagas de Mensalista",
-                                style: TextStyle(
-                                    color: Colors.black,
-                                    fontWeight: FontWeight.bold),
-                              ),
-                            ],
-                          ),
-                          Icon(
-                            Icons.arrow_forward_ios_rounded,
-                            color: Colors.black,
-                          ),
-                        ],
+                    GestureDetector(
+                      onTap: () => Occupied(),
+                      child: Container(
+                        height: 50,
+                        width: MediaQuery.of(context).size.width,
+                        decoration: BoxDecoration(
+                            color: Color(0xFF28D5E2),
+                            borderRadius: BorderRadius.circular(5)),
+                        padding: EdgeInsets.all(10),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Row(
+                              children: [
+                                Icon(Icons.calendar_month, color: Colors.black),
+                                SizedBox(
+                                  width: 10,
+                                ),
+                                Text(
+                                  "Vagas de Mensalista",
+                                  style: TextStyle(
+                                      color: Colors.black,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                              ],
+                            ),
+                            Icon(
+                              Icons.arrow_forward_ios_rounded,
+                              color: Colors.black,
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   ],
