@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:get/route_manager.dart';
+import 'package:parkings/screens/actions.dart';
 
 class Home extends StatelessWidget {
   const Home({Key? key}) : super(key: key);
@@ -17,12 +19,15 @@ class Home extends StatelessWidget {
             color: Color(0xff191E26),
           ),
         ),
-        actions: const [
+        actions: [
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20),
-            child: Icon(
-              Icons.add_rounded,
-              color: Color(0xff191E26),
+            child: GestureDetector(
+              onTap: () => Get.to(ActScreen()),
+              child: Icon(
+                Icons.add_rounded,
+                color: Color(0xff191E26),
+              ),
             ),
           )
         ],
