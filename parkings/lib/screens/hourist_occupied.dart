@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
-class Occupied extends StatelessWidget {
-  const Occupied({Key? key}) : super(key: key);
+class HouristsOccupieds extends StatelessWidget {
+  const HouristsOccupieds({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -69,16 +69,26 @@ class Occupied extends StatelessWidget {
                             ),
                           ],
                         ),
+                        SizedBox(
+                          height: 20,
+                        ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Text(
-                              "12 Horas - 11/03/2023",
+                              "GUI-6969",
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 32,
+                              ),
+                            ),
+                            Text(
+                              "VAGA22",
                               style: TextStyle(
                                 color: Colors.white,
                               ),
                             ),
-                            Icon(Icons.exit_to_app_rounded),
                           ],
                         ),
                       ],

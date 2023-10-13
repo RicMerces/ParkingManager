@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/route_manager.dart';
 import 'package:parkings/screens/actions.dart';
-import 'package:parkings/screens/occupied.dart';
+
+import 'package:parkings/screens/hourist_occupied.dart';
+import 'package:parkings/screens/mounthly_occupied.dart';
 
 class Home extends StatelessWidget {
   const Home({Key? key}) : super(key: key);
@@ -221,7 +223,7 @@ class Home extends StatelessWidget {
                       height: 20,
                     ),
                     GestureDetector(
-                      onTap: () => Get.to(Occupied()),
+                      onTap: () => Get.to(HouristsOccupieds()),
                       child: Container(
                         height: 50,
                         width: MediaQuery.of(context).size.width,
@@ -258,7 +260,7 @@ class Home extends StatelessWidget {
                       height: 20,
                     ),
                     GestureDetector(
-                      onTap: () => Occupied(),
+                      onTap: () => Get.to(MounthlyOccupied()),
                       child: Container(
                         height: 50,
                         width: MediaQuery.of(context).size.width,
