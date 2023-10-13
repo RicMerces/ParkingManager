@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/route_manager.dart';
-import 'package:parkings/screens/actions.dart';
+import 'package:parkings/screens/actions_parkings.dart';
 
 import 'package:parkings/screens/hourist_occupied.dart';
 import 'package:parkings/screens/mounthly_occupied.dart';
