@@ -16,7 +16,7 @@ class Openin extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-            Column(
+            const Column(
               children: [
                 Text(
                   "Bem vindo(a) ao ",
@@ -35,7 +35,7 @@ class Openin extends StatelessWidget {
               ],
             ),
             SvgPicture.asset("assets/svg/logo.svg"),
-            Column(
+            const Column(
               children: [
                 Text(
                   "Estacione seu carro com tranquilidade",
@@ -56,7 +56,7 @@ class Openin extends StatelessWidget {
                 ),
               ],
             ),
-            ParkBtn(),
+            ParkBtn(title: "Entrar"),
           ],
         ),
       ),

@@ -12,7 +12,7 @@ class MounthlyCreatedList extends StatelessWidget {
         foregroundColor: Colors.black,
         elevation: 0,
         title: Text(
-          "Criar Horistas",
+          "Mensalistas criados",
           style: TextStyle(
             color: Colors.black,
           ),

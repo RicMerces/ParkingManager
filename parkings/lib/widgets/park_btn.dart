@@ -3,8 +3,8 @@ import 'package:get/route_manager.dart';
 import 'package:parkings/screens/home.dart';
 
 class ParkBtn extends StatelessWidget {
-  const ParkBtn({Key? key}) : super(key: key);
-
+  const ParkBtn({Key? key, required this.title}) : super(key: key);
+  final String title;
   @override
   Widget build(BuildContext context) {
     return MaterialButton(
@@ -14,7 +14,7 @@ class ParkBtn extends StatelessWidget {
         width: MediaQuery.of(context).size.width,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(30),
-          gradient: LinearGradient(
+          gradient: const LinearGradient(
             colors: [
               Color(0xff2A74F7),
               Color(0xff28D5E2),
@@ -25,7 +25,7 @@ class ParkBtn extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              "Entrar",
+              title,
               style: TextStyle(
                 fontSize: 20,
                 color: Colors.white,

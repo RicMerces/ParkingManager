@@ -1,8 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:parkings/widgets/park_btn.dart';
 
-class InsertMounthly extends StatelessWidget {
+import '../widgets/blue_form_field.dart';
+
+class InsertMounthly extends StatefulWidget {
   const InsertMounthly({Key? key}) : super(key: key);
 
+  @override
+  State<InsertMounthly> createState() => _InsertMounthlyState();
+}
+
+class _InsertMounthlyState extends State<InsertMounthly> {
+  TextEditingController controller = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -18,70 +27,48 @@ class InsertMounthly extends StatelessWidget {
           ),
         ),
       ),
-      body: Column(
-        children: [
-          Expanded(
-            child: Container(
-              padding: EdgeInsets.symmetric(
-                vertical: 20,
-                horizontal: 10,
-              ),
-              width: MediaQuery.of(context).size.width,
-              child: ListView.builder(
-                shrinkWrap: true,
-                itemCount: 10,
-                itemBuilder: (BuildContext context, int index) => Container(
-                  decoration: BoxDecoration(
-                      color: Color(0xff2A74F7),
-                      borderRadius: BorderRadius.circular(5)),
-                  height: 150,
-                  padding: EdgeInsets.all(20),
-                  margin: EdgeInsets.all(5),
+      body: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 40),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
                   child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            "12 Horas - 11/03/2023",
-                            style: TextStyle(color: Colors.white),
-                          ),
-                          Icon(
-                            Icons.exit_to_app_rounded,
-                            color: Colors.white,
-                          ),
-                        ],
+                      Text(
+                        "Preencha um campo com o CPF do mensalista",
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                       SizedBox(
-                        height: 20,
+                        height: 5,
                       ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            "GUI-6969",
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 32,
-                            ),
-                          ),
-                          Text(
-                            "VAGA22",
-                            style: TextStyle(
-                              color: Colors.white,
-                            ),
-                          ),
-                        ],
+                      Text(
+                        "Vamos inseri-lo em uma vaga",
                       ),
                     ],
                   ),
                 ),
-              ),
+                SizedBox(
+                  height: 10,
+                ),
+                BlueFormField(
+                  controller: controller,
+                  labelTitle: "CPF",
+                  labelText: "EX: 999-888-777-66",
+                ),
+              ],
             ),
-          )
-        ],
+            ParkBtn(title: "Inserir"),
+          ],
+        ),
       ),
     );
   }
