@@ -87,6 +87,10 @@ class _MounthlyOccupiedState extends State<MounthlyOccupied> {
                           horista: mensalista['dataHoraEntrada'],
                           placa: mensalista['placa'],
                           id: index,
+                          delete: () => 
+                              mensalistaController.registrarSaidaMensalista(
+                            mensalista['cpf'],
+                          ),
                         );
                       },
                     ),

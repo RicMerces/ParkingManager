@@ -5,9 +5,7 @@ Future<void> registrarEntradaHorista(String placa) async {
 
   final response = await http.post(
     url,
-    body: {
-      'placa': placa,
-    },
+    body: placa,
   );
 
   if (response.statusCode == 200) {

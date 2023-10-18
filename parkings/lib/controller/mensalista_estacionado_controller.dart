@@ -23,4 +23,21 @@ class MensalistasEstacionadosController extends GetxController {
       throw Exception('Erro na solicitação: ${response.statusCode}');
     }
   }
+
+  Future<void> registrarSaidaMensalista(String cpf) async {
+    try {
+      final url =
+          Uri.parse('http://localhost:8080/registrar-saida-mensalista/$cpf');
+      final response = await http.patch(url);
+
+      if (response.statusCode == 200) {
+        print('Saída de mensalista registrada com sucesso!');
+      } else {
+        throw Exception(
+            'Erro ao registrar saída de mensalista: ${response.statusCode}');
+      }
+    } catch (error) {
+      print('Erro ao fazer a chamada HTTP: $error');
+    }
+  }
 }

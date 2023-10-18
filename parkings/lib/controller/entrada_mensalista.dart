@@ -8,9 +8,7 @@ class EntradaMensalistaController extends GetxController {
           Uri.parse('http://localhost:8080/registrar-entrada-mensalista');
       final response = await http.post(
         url,
-        body: {
-          'cpf': cpf,
-        },
+        body: cpf,
       );
 
       if (response.statusCode == 200) {

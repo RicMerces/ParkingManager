@@ -7,13 +7,14 @@ class ContainerMensalista extends StatelessWidget {
     required this.horista,
     required this.cpf,
     required this.id,
+    required this.delete,
   }) : super(key: key);
 
   final String placa;
   final String cpf;
   final String horista;
   final int id;
-
+  final Function delete;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -29,19 +30,22 @@ class ContainerMensalista extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                "983.342.342-43",
+                cpf,
                 style: TextStyle(color: Colors.black),
               ),
-              Icon(
-                Icons.exit_to_app_rounded,
-                color: Colors.black,
+              GestureDetector(
+                onTap: () => delete(),
+                child: Icon(
+                  Icons.exit_to_app_rounded,
+                  color: Colors.black,
+                ),
               ),
             ],
           ),
           Row(
             children: [
               Text(
-                "data: 09/08/2023 - hora: 12:30",
+                horista,
                 style: TextStyle(color: Colors.black),
               ),
             ],
@@ -53,7 +57,7 @@ class ContainerMensalista extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                "GUI-6969",
+                placa,
                 style: TextStyle(
                   color: Colors.black,
                   fontWeight: FontWeight.bold,
@@ -61,7 +65,7 @@ class ContainerMensalista extends StatelessWidget {
                 ),
               ),
               Text(
-                "VAGA22",
+                "VAGA${id + 1}",
                 style: TextStyle(
                   color: Colors.black,
                 ),

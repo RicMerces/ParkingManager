@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:parkings/controller/criar_mensalista_controller.dart';
 import 'package:parkings/widgets/container_horista.dart';
 import '../controller/horista_estacionado_controller.dart';
 
@@ -77,6 +78,7 @@ class _HouristsOccupiedsState extends State<HouristsOccupieds> {
                       itemBuilder: (BuildContext context, int index) {
                         final horista = horistasEstacionados[index];
                         return ContainerHorista(
+                          isHourist: horista['isHorista'],
                           delete: () => horistasController
                               .registrarSaidaHorista(horista['placa']),
                           horista: horista['dataHoraEntrada'],

@@ -7,18 +7,20 @@ class ContainerHorista extends StatelessWidget {
     required this.horista,
     required this.id,
     required this.delete,
+    this.isHourist = true,
   }) : super(key: key);
 
   final String placa;
   final String horista;
   final int id;
   final Function delete;
+  final bool isHourist;
 
   @override
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: const Color(0xff2A74F7),
+        color: !isHourist ? const Color(0xff2A74F7) : Color(0xff28D5E2),
         borderRadius: BorderRadius.circular(5),
       ),
       height: 150,
@@ -33,7 +35,9 @@ class ContainerHorista extends StatelessWidget {
             children: [
               Text(
                 horista,
-                style: TextStyle(color: Colors.white),
+                style: TextStyle(
+                  color: !isHourist ? Colors.white : Color(0xff1C1B1F),
+                ),
               ),
               GestureDetector(
                 onTap: () async {
@@ -42,7 +46,7 @@ class ContainerHorista extends StatelessWidget {
                 },
                 child: Icon(
                   Icons.exit_to_app_rounded,
-                  color: Colors.white,
+                  color: !isHourist ? Colors.white : Color(0xff1C1B1F),
                 ),
               ),
             ],
@@ -53,15 +57,15 @@ class ContainerHorista extends StatelessWidget {
           Text(
             placa,
             style: TextStyle(
-              color: Colors.white,
+              color: !isHourist ? Colors.white : Color(0xff1C1B1F),
               fontWeight: FontWeight.bold,
               fontSize: 32,
             ),
           ),
           Text(
-            "VAGA${id + 1}",
+            "VAGA${id + 1} ${isHourist ? "- Mensalista na vaga" : ""}",
             style: TextStyle(
-              color: Colors.white,
+              color: !isHourist ? Colors.white : Color(0xff1C1B1F),
             ),
           ),
         ],
