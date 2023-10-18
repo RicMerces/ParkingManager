@@ -1,8 +1,30 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:parkings/controller/horista_estacionado_controller.dart';
+import 'package:parkings/widgets/container_mensalista.dart';
 
-class MounthlyOccupied extends StatelessWidget {
+import 'package:parkings/widgets/container_mensalista.dart';
+
+import '../controller/mensalista_estacionado_controller.dart';
+
+class MounthlyOccupied extends StatefulWidget {
   const MounthlyOccupied({Key? key}) : super(key: key);
+
+  @override
+  State<MounthlyOccupied> createState() => _MounthlyOccupiedState();
+}
+
+class _MounthlyOccupiedState extends State<MounthlyOccupied> {
+  final MensalistasEstacionadosController mensalistaController =
+      Get.put(MensalistasEstacionadosController());
+
+  @override
+  void initState() {
+    super.initState();
+    mensalistaController.fetchMensalistasEstacionados();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +53,7 @@ class MounthlyOccupied extends StatelessWidget {
                 left: 15,
               ),
               child: Text(
-                "Veja vagas ocupadas de Horistas",
+                "Veja vagas ocupadas de Mensalistas",
                 style: TextStyle(
                   fontSize: 20,
                   color: Color(0xff191E26),
@@ -39,72 +61,39 @@ class MounthlyOccupied extends StatelessWidget {
                 ),
               ),
             ),
-            Expanded(
-              child: Container(
-                padding: EdgeInsets.symmetric(vertical: 20, horizontal: 10),
-                width: MediaQuery.of(context).size.width,
-                child: ListView.builder(
-                  shrinkWrap: true,
-                  itemCount: 10,
-                  itemBuilder: (BuildContext context, int index) => Container(
-                    decoration: BoxDecoration(
-                        color: Color(0xff28D5E2),
-                        borderRadius: BorderRadius.circular(5)),
-                    height: 150,
-                    padding: EdgeInsets.all(20),
-                    margin: EdgeInsets.all(5),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              "983.342.342-43",
-                              style: TextStyle(color: Colors.black),
-                            ),
-                            Icon(
-                              Icons.exit_to_app_rounded,
-                              color: Colors.black,
-                            ),
-                          ],
-                        ),
-                        Row(
-                          children: [
-                            Text(
-                              "data: 09/08/2023 - hora: 12:30",
-                              style: TextStyle(color: Colors.black),
-                            ),
-                          ],
-                        ),
-                        SizedBox(
-                          height: 20,
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              "GUI-6969",
-                              style: TextStyle(
-                                color: Colors.black,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 32,
-                              ),
-                            ),
-                            Text(
-                              "VAGA22",
-                              style: TextStyle(
-                                color: Colors.black,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ],
+            Obx(() {
+              final mensalistaEstacionados =
+                  mensalistaController.mensalistasEstacionados;
+
+              if (mensalistaEstacionados.isEmpty) {
+                return SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.8,
+                  child: Center(
+                    child: Text("Nenhum Horista foi encontrado estacionado"),
+                  ),
+                );
+              } else {
+                return Expanded(
+                  child: Container(
+                    padding: EdgeInsets.symmetric(vertical: 20, horizontal: 10),
+                    width: MediaQuery.of(context).size.width,
+                    child: ListView.builder(
+                      shrinkWrap: true,
+                      itemCount: mensalistaEstacionados.length,
+                      itemBuilder: (BuildContext context, int index) {
+                        final mensalista = mensalistaEstacionados[index];
+                        return ContainerMensalista(
+                          cpf: mensalista['cpf'],
+                          horista: mensalista['dataHoraEntrada'],
+                          placa: mensalista['placa'],
+                          id: index,
+                        );
+                      },
                     ),
                   ),
-                ),
-              ),
-            ),
+                );
+              }
+            }),
           ],
         ),
       ),

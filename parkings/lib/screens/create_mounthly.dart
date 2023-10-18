@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
+import '../controller/criar_mensalista_controller.dart';
+import '../models/mensalista.dart';
+import '../models/placa.dart';
 import '../widgets/blue_form_field.dart';
 import '../widgets/park_btn.dart';
 
@@ -13,7 +17,27 @@ class CreateMounthly extends StatefulWidget {
 class _CreateMounthlyState extends State<CreateMounthly> {
   @override
   Widget build(BuildContext context) {
-    TextEditingController controller = TextEditingController();
+    TextEditingController cpfController = TextEditingController();
+    TextEditingController nomeController = TextEditingController();
+    TextEditingController telefoneController = TextEditingController();
+    TextEditingController placasController = TextEditingController();
+    final MensalistaController mensalistaController =
+        Get.put(MensalistaController());
+    void cadastrarMensalista() {
+      final cpf = cpfController.text;
+      final nome = nomeController.text;
+      final telefone = telefoneController.text;
+      final placas = placasController.text
+          .split(',')
+          .map((placa) => Placa(placa: placa.trim()))
+          .toList();
+
+      final mensalista =
+          Mensalista(nome: nome, cpf: cpf, tel: telefone, placas: placas);
+
+      mensalistaController.createMensalista(mensalista);
+    }
+
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -60,28 +84,31 @@ class _CreateMounthlyState extends State<CreateMounthly> {
                   height: 10,
                 ),
                 BlueFormField(
-                  controller: controller,
+                  controller: cpfController,
                   labelTitle: "CPF",
                   labelText: "EX: 999-888-777-66",
                 ),
                 BlueFormField(
-                  controller: controller,
+                  controller: nomeController,
                   labelTitle: "Nome",
                   labelText: "EX: Fulano de Tal",
                 ),
                 BlueFormField(
-                  controller: controller,
+                  controller: telefoneController,
                   labelTitle: "Telefone",
                   labelText: "EX: 71 98999-8888",
                 ),
                 BlueFormField(
-                  controller: controller,
+                  controller: placasController,
                   labelTitle: "Placa(s)",
                   labelText: "EX: PLA-0001, CAA-0002, PLA-0003",
                 ),
               ],
             ),
-            ParkBtn(title: "Cadastrar"),
+            ParkBtn(
+              title: "Cadastrar",
+              onPressed: () => cadastrarMensalista(),
+            ),
           ],
         ),
       ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:parkings/controller/criar_horista_controller.dart';
 import 'package:parkings/widgets/blue_form_field.dart';
 import 'package:parkings/widgets/park_btn.dart';
 
@@ -66,7 +67,13 @@ class _CreateHouristState extends State<CreateHourist> {
                 ),
               ],
             ),
-            ParkBtn(title: "Cadastrar"),
+            ParkBtn(
+              title: "Cadastrar",
+              onPressed: () {
+                registrarEntradaHorista(controller.text);
+                print(controller.text);
+              },
+            ),
           ],
         ),
       ),

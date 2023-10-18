@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:get/route_manager.dart';
+import 'package:parkings/screens/home.dart';
 import 'package:parkings/widgets/park_btn.dart';
 
 class Openin extends StatelessWidget {
@@ -56,7 +59,10 @@ class Openin extends StatelessWidget {
                 ),
               ],
             ),
-            ParkBtn(title: "Entrar"),
+            ParkBtn(
+              title: "Entrar",
+              onPressed: () => Get.to(Home()),
+            ),
           ],
         ),
       ),

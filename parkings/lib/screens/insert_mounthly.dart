@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:parkings/widgets/park_btn.dart';
 
+import '../controller/entrada_mensalista.dart';
 import '../widgets/blue_form_field.dart';
 
 class InsertMounthly extends StatefulWidget {
@@ -12,6 +13,8 @@ class InsertMounthly extends StatefulWidget {
 
 class _InsertMounthlyState extends State<InsertMounthly> {
   TextEditingController controller = TextEditingController();
+  final entradaMensalistaController = EntradaMensalistaController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -66,7 +69,15 @@ class _InsertMounthlyState extends State<InsertMounthly> {
                 ),
               ],
             ),
-            ParkBtn(title: "Inserir"),
+            ParkBtn(
+              title: "Inserir",
+              onPressed: () {
+                final cpf = controller.text; // Obtém o CPF do campo de entrada
+                entradaMensalistaController.registrarEntradaMensalista(
+                  cpf,
+                );
+              },
+            ),
           ],
         ),
       ),

@@ -1,13 +1,30 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:get/get.dart';
 import 'package:get/route_manager.dart';
+import 'package:parkings/controller/home_controller.dart';
 import 'package:parkings/screens/actions_parkings.dart';
-
+import 'package:http/http.dart' as http;
 import 'package:parkings/screens/hourist_occupied.dart';
 import 'package:parkings/screens/mounthly_occupied.dart';
+import 'package:parkings/widgets/kings_container.dart';
 
-class Home extends StatelessWidget {
+class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
+
+  @override
+  State<Home> createState() => _HomeState();
+}
+
+class _HomeState extends State<Home> {
+  HomeController homeController = Get.put(HomeController());
+  @override
+  void initState() {
+    super.initState();
+    homeController.fetchData();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -57,63 +74,41 @@ class Home extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    Expanded(
-                      child: Container(
-                        height: 150,
-                        decoration: BoxDecoration(
-                          color: Color(0xffBFF0FF),
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(
-                              "10",
-                              style: TextStyle(
-                                color: Color(0xff2A74F7),
-                                fontWeight: FontWeight.bold,
-                                fontSize: 28,
-                              ),
-                            ),
-                            Text(
-                              "para Horistas",
-                              style: TextStyle(color: Color(0xff2A74F7)),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
+                    Obx(() {
+                      if (homeController.data.isEmpty) {
+                        return KingsContainer(
+                          isOccuped: false,
+                          isHourist: true,
+                          qtd: "loading...",
+                        );
+                      } else {
+                        final data = homeController.data;
+                        return KingsContainer(
+                          isOccuped: false,
+                          isHourist: true,
+                          qtd: data['vagasHoristasLivre'].toString(),
+                        );
+                      }
+                    }),
                     SizedBox(
                       width: MediaQuery.of(context).size.width * 0.05,
                     ),
-                    Expanded(
-                      child: Container(
-                        decoration: BoxDecoration(
-                          color: Color(0xffBFF0FF),
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        height: 150,
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(
-                              "10",
-                              style: TextStyle(
-                                color: Color(0xff2A74F7),
-                                fontWeight: FontWeight.bold,
-                                fontSize: 28,
-                              ),
-                            ),
-                            Text(
-                              "para Mensalistas",
-                              style: TextStyle(
-                                color: Color(0xff2A74F7),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
+                    Obx(() {
+                      if (homeController.data.isEmpty) {
+                        return KingsContainer(
+                          isOccuped: false,
+                          isHourist: true,
+                          qtd: "loading...",
+                        );
+                      } else {
+                        final data = homeController.data;
+                        return KingsContainer(
+                          isOccuped: false,
+                          isHourist: false,
+                          qtd: data['vagasMensalistasLivre'].toString(),
+                        );
+                      }
+                    }),
                   ],
                 ),
               ],
@@ -138,63 +133,41 @@ class Home extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    Expanded(
-                      child: Container(
-                        height: 150,
-                        decoration: BoxDecoration(
-                          color: Color(0xffE2E5E9),
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(
-                              "10",
-                              style: TextStyle(
-                                color: Color(0xff191E26),
-                                fontWeight: FontWeight.bold,
-                                fontSize: 28,
-                              ),
-                            ),
-                            Text(
-                              "para Horistas",
-                              style: TextStyle(color: Color(0xff191E26)),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
+                    Obx(() {
+                      if (homeController.data.isEmpty) {
+                        return KingsContainer(
+                          isOccuped: false,
+                          isHourist: true,
+                          qtd: "loading...",
+                        );
+                      } else {
+                        final data = homeController.data;
+                        return KingsContainer(
+                          isOccuped: true,
+                          isHourist: true,
+                          qtd: data['vagasHoristasPreenchida'].toString(),
+                        );
+                      }
+                    }),
                     SizedBox(
                       width: MediaQuery.of(context).size.width * 0.05,
                     ),
-                    Expanded(
-                      child: Container(
-                        decoration: BoxDecoration(
-                          color: Color(0xffE2E5E9),
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        height: 150,
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(
-                              "10",
-                              style: TextStyle(
-                                color: Color(0xff191E26),
-                                fontWeight: FontWeight.bold,
-                                fontSize: 28,
-                              ),
-                            ),
-                            Text(
-                              "para Mensalistas",
-                              style: TextStyle(
-                                color: Color(0xff191E26),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
+                    Obx(() {
+                      if (homeController.data.isEmpty) {
+                        return KingsContainer(
+                          isOccuped: false,
+                          isHourist: true,
+                          qtd: "loading...",
+                        );
+                      } else {
+                        final data = homeController.data;
+                        return KingsContainer(
+                          isOccuped: true,
+                          isHourist: false,
+                          qtd: data['vagasMensalistasPreenchida'].toString(),
+                        );
+                      }
+                    }),
                   ],
                 ),
               ],

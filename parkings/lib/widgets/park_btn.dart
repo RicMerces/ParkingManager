@@ -3,12 +3,14 @@ import 'package:get/route_manager.dart';
 import 'package:parkings/screens/home.dart';
 
 class ParkBtn extends StatelessWidget {
-  const ParkBtn({Key? key, required this.title}) : super(key: key);
+  const ParkBtn({Key? key, required this.title, required this.onPressed})
+      : super(key: key);
   final String title;
+  final Function onPressed;
   @override
   Widget build(BuildContext context) {
     return MaterialButton(
-      onPressed: () => Get.to(Home()),
+      onPressed: () => onPressed(),
       child: Container(
         padding: EdgeInsets.all(15),
         width: MediaQuery.of(context).size.width,
